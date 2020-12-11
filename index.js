@@ -208,10 +208,10 @@ Practice accessing data above by console.log-ing following items:
 (no functions needed) */
 
 //(1) Name of the first artist (0th index) in the array
-console.log(artists[0].name)
+console.log(artists[0].name);
 
 //(2) Bio of the third artist (2nd index) in the array 
-console.log(artists[2].bio)
+console.log(artists[2].bio);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -229,7 +229,7 @@ artists[8].name="Vincent Van Gogh";
  Example, if getArtistByIndex is invoked with the artists array and the number 0, it will return `the artist at index 0 is Amedeo Modigliani` */
 
 function getArtistByIndex(arr, i) {
-  return `the artist at index ${i} is ${arr[i].name}`
+  return `the artist at index ${i} is ${arr[i].name}`;
 }  
 
 
@@ -294,7 +294,7 @@ function addArtist(arr){
       genre: "Web Design", 
       nationality: "China",
       bio: "Quae eveniet ducimus alias natus maiores et. Temporibus reiciendis accusamus magnam."
-    } )
+    } );
     return arr;
   }
 
@@ -311,7 +311,7 @@ function lotsOfArt(arr){
   const res = [];
   for(let i = 0;i<arr.length;i++){
     if(arr[i].paintings>100){
-      res.push(arr[i].name)
+      res.push(arr[i].name);
     }
   }
   return res;
@@ -342,26 +342,57 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
-function getHTML(/* Code here */){
 
-    /* Code here */
-
+// image link is not yet solved ideally, to be done
+function getHTML(data){
+  for(let i in data){
+    console.log(`<div id="artist">
+    <div class="image">
+        <img src="https://www.bing.com/images/search?q=${data[i].name}"/>
+    </div>
+    <div class = "name">
+       <a href="${data[i].wikipedia}"> ${data[i].name}</a>
+    </div>
+    <div class = "bio">${data[i].bio}</div>
+    </div>`);
   }
+}
+
+console.log(getHTML(artists))
 
 
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */){
-
-    /* Code here */
-
+function randomize(arr){
+  const copy = [...arr];
+  const res = [];
+  // we pick a random item from the copy array every iteration and splice that one onto the result array. We use a [0] access to flatten the result.
+  for(let i = copy.length; i>0; i--){
+    res.push(copy.splice(Math.floor(Math.random()*i),1)[0]);
   }
-
+  return res;
+}
+console.log(randomize(artists))
 
  /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
 
+// tasks 4 and 7 can be meaningfully written with higher order functions
+
+// 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 New Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
+function newget20s(arr){
+  return arr.filter(i => i.years.match(/19\d\d - 19\d\d/))
+  .map(i => i.name);
+}
+console.log(newget20s(artists));
+  
+// 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 New Task 7: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
+function newlotsOfArt(arr){
+  return arr.filter(i => i.paintings>100)
+  .map(i => i.name);
+}
+console.log(newlotsOfArt(artists));
  
  
  
