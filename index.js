@@ -343,7 +343,7 @@ The function should console.log 50 chunks of HTML code that match the structure 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
 
-// image link is not yet solved ideally, to be done
+// image link via a keyword is not implemented, can't find a good way to do it fast without setting up some external API or scraping. I know it could be done though.
 function getHTML(data){
   for(let i in data){
     console.log(`<div id="artist">
